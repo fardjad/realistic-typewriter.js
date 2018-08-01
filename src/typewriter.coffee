@@ -88,15 +88,6 @@ class Typewriter
       @targetDomElement.removeChild @targetDomElement.lastChild
       done()
 
-  deleteAll: (cb) ->
-    return @_makeChainable cb, (done) =>
-      charsLen = @targetDomElement.childNodes.length
-      while( 0 < charsLen )
-        @delete()
-        @waitRange ~~(1000 / @maximumSpeed), ~~(1000 / @minimumSpeed)
-        charsLen--
-      done()
-
   type: (text, cb) ->
     checkInterval = (@minimumSpeed + @maximumSpeed) / 2
     gen = charactergenerator @keyboardLayout, @accuracy, checkInterval,
